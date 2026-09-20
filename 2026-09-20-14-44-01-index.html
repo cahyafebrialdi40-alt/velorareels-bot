@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VeloraReels ✨</title>
+<style>
+:root{
+  --bg:#f7f7fb; --card:#fff; --text:#171821; --muted:#a3a4ad;
+  --purple:#6656e8; --pink:#ff8da8; --line:#ececf2;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+.app{max-width:480px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:92px}
+header{display:flex;align-items:center;justify-content:space-between;padding:20px 18px 12px;background:#fff;position:sticky;top:0;z-index:3}
+.logo{font-size:24px;font-weight:800}.logo span{color:#8a77ff}
+.icon{font-size:24px}
+main{padding:18px}
+.page{display:none}.page.active{display:block}
+.hero{background:linear-gradient(135deg,#f0eaff,#fff1d7);border-radius:24px;padding:22px;margin-bottom:18px}
+.hero h1{margin:0 0 8px;font-size:25px}.hero p{margin:0;color:#777;line-height:1.5}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:20px 0 12px}
+.section-title h2{font-size:18px;margin:0}.section-title small{color:var(--purple)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.drama{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 3px 15px #1b16400b}
+.poster{height:165px;background:linear-gradient(145deg,#5b4bb7,#f19bb2);display:flex;align-items:flex-end;padding:12px;color:#fff;font-weight:800;font-size:18px}
+.poster.two{background:linear-gradient(145deg,#173d52,#e6a36d)}
+.poster.three{background:linear-gradient(145deg,#222,#b96b85)}
+.poster.four{background:linear-gradient(145deg,#8e5d36,#f2d49d)}
+.drama .info{padding:12px}.drama h3{font-size:14px;margin:0 0 6px}.drama p{font-size:12px;color:#999;margin:0}
+.vip-box{background:linear-gradient(135deg,#eee8ff,#f8f2ff);border:1px solid #d9d0ff;border-radius:24px;padding:22px;text-align:center}
+.crown{font-size:48px}.vip-box h1{margin:8px 0}.vip-box p{color:#999}
+.plan{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;display:flex;justify-content:space-between;align-items:center}
+.plan strong{font-size:18px}.plan small{display:block;color:#999;margin-top:5px}
+button{border:0;border-radius:14px;padding:12px 16px;background:var(--purple);color:#fff;font-weight:700;cursor:pointer}
+input{width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;margin:10px 0;font-size:15px}
+.profile{background:#fff;border-radius:22px;padding:24px;text-align:center}.avatar{width:76px;height:76px;border-radius:50%;background:#ddd6ff;display:grid;place-items:center;font-size:35px;margin:auto}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,100%);display:grid;grid-template-columns:repeat(4,1fr);background:#1f1f23;color:#aaa;padding:12px 8px 14px;border-radius:24px 24px 0 0;z-index:5}
+nav button{background:transparent;color:#aaa;padding:7px 2px;font-size:12px}
+nav button.active{color:#7dbbff}nav span{display:block;font-size:22px;margin-bottom:4px}
+.notice{display:none;background:#e8fff0;color:#19743d;padding:12px;border-radius:12px;margin-top:12px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo">Velora<span>Reels</span> ✨</div><div class="icon">🔔</div></header>
+
+<main>
+<section id="home" class="page active">
+  <div class="hero"><h1>Selamat datang di VeloraReels 🎬</h1><p>Nonton drama favoritmu, kapan saja dan di mana saja.</p></div>
+  <div class="section-title"><h2>Drama pilihan</h2><small>Lihat semua</small></div>
+  <div class="grid">
+    <article class="drama"><div class="poster">Cinta Rahasia</div><div class="info"><h3>Cinta Rahasia</h3><p>Episode 1–20</p></div></article>
+    <article class="drama"><div class="poster two">Janji di Senja</div><div class="info"><h3>Janji di Senja</h3><p>Episode 1–16</p></div></article>
+    <article class="drama"><div class="poster three">Takdir Kita</div><div class="info"><h3>Takdir Kita</h3><p>Episode 1–24</p></div></article>
+    <article class="drama"><div class="poster four">Misteri Hati</div><div class="info"><h3>Misteri Hati</h3><p>Episode 1–12</p></div></article>
+  </div>
+</section>
+
+<section id="explore" class="page">
+  <div class="section-title"><h2>Jelajahi Drama 🔎</h2></div>
+  <input id="search" placeholder="Cari judul drama..." oninput="filterDrama()" />
+  <div class="grid" id="dramaGrid"></div>
+</section>
+
+<section id="vip" class="page">
+  <div class="vip-box"><div class="crown">👑</div><h1>VIP Premium</h1><p>Akses semua konten eksklusif tanpa batas.</p></div>
+  <div class="plan"><div><strong>1 Hari</strong><small>Akses VIP selama 24 jam</small></div><div><strong>Rp3.000</strong><br><button onclick="activate('1 hari')">Pilih</button></div></div>
+  <div class="plan"><div><strong>7 Hari</strong><small>Akses VIP selama 7 hari</small></div><div><strong>Rp15.000</strong><br><button onclick="activate('7 hari')">Pilih</button></div></div>
+  <div class="plan"><div><strong>30 Hari</strong><small>Akses VIP selama 30 hari</small></div><div><strong>Rp40.000</strong><br><button onclick="activate('30 hari')">Pilih</button></div></div>
+  <div id="notice" class="notice"></div>
+</section>
+
+<section id="profile" class="page">
+  <div class="profile"><div class="avatar">👤</div><h2>Profil Pengguna</h2><p id="status">Status: Belum VIP</p><button onclick="alert('Fitur login akan ditambahkan pada tahap berikutnya.')">Login / Daftar</button></div>
+</section>
+</main>
+
+<nav>
+<button class="active" onclick="showPage('home',this)"><span>🏠</span>Beranda</button>
+<button onclick="showPage('explore',this)"><span>🔎</span>Jelajahi</button>
+<button onclick="showPage('vip',this)"><span>👑</span>VIP</button>
+<button onclick="showPage('profile',this)"><span>👤</span>Profil</button>
+</nav>
+</div>
+<script>
+const dramas=[
+ ['Cinta Rahasia','Episode 1–20','poster'],['Janji di Senja','Episode 1–16','poster two'],
+ ['Takdir Kita','Episode 1–24','poster three'],['Misteri Hati','Episode 1–12','poster four']
+];
+function showPage(id,btn){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+}
+function render(list=dramas){
+ document.getElementById('dramaGrid').innerHTML=list.map(d=>`<article class="drama"><div class="poster ${d[2].replace('poster','')}">${d[0]}</div><div class="info"><h3>${d[0]}</h3><p>${d[1]}</p></div></article>`).join('');
+}
+function filterDrama(){
+ const q=document.getElementById('search').value.toLowerCase();
+ render(dramas.filter(d=>d[0].toLowerCase().includes(q)));
+}
+function activate(plan){
+ document.getElementById('notice').style.display='block';
+ document.getElementById('notice').textContent='Demo: paket VIP '+plan+' dipilih. Pembayaran asli belum dihubungkan.';
+}
+render();
+</script>
+</body>
+</html>
