@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VeloraReels VIP</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0b0f19;
+      color: white;
+      font-family: Arial, sans-serif;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 20px;
+    }
+
+    .vip-card {
+      width: 100%;
+      max-width: 420px;
+      background: #151a27;
+      border-radius: 22px;
+      padding: 28px 22px;
+      text-align: center;
+
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+
+    .lock {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      color: #b8bfce;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .qr-box {
+      background: white;
+      border-radius: 16px;
+      padding: 12px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .qr-box img {
+      display: block;
+      width: 280px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .payment-info {
+      color: #d8dce5;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .paid-button {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+
+      background: #18c964;
+      color: white;
+
+      font-size: 16px;
+      font-weight: bold;
+
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .paid-button:active {
+      transform: scale(0.98);
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #858c9c;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="vip-card">
+
+    <div class="lock">🔐</div>
+
+    <h1>VeloraReels VIP</h1>
+
+    <div class="subtitle">
+      Part ini khusus untuk member VIP.<br>
+      Silakan lakukan pembayaran untuk melanjutkan menonton.
+    </div>
+
+    <div class="qr-box">
+      <img src="qr-payment.jpg" alt="QR Pembayaran">
+    </div>
+
+    <div class="payment-info">
+      Scan QR di atas menggunakan aplikasi pembayaran kamu.
+      Setelah pembayaran selesai, tekan tombol di bawah.
+    </div>
+
+    <a class="paid-button" href="#">
+      ✓ Saya sudah bayar
+    </a>
+
+    <div class="note">
+      Pembayaran akan diverifikasi secara manual untuk sementara.
+    </div>
+
+  </div>
+
+</body>
+</html>
