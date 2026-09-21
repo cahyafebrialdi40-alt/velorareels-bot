@@ -244,14 +244,21 @@ function playPart3(){
  v.play().catch(()=>{});
  }
  function playPart4(){
- const player=document.getElementById('player');
- player.style.display='block';
- player.innerHTML=`
-  <video controls playsinline poster="poster.jpg">
-   <source src="Part 4.mp4" type="video/mp4">
-  </video>`;
- const v=player.querySelector('video');
- v.play().catch(()=>{});
+
+  if(localStorage.getItem("vipAktif") !== "true"){
+    showVIP();
+    return;
+  }
+
+  const player=document.getElementById('player');
+  player.style.display='block';
+  player.innerHTML=`
+    <video controls playsinline poster="poster.jpg">
+      <source src="Part 4.mp4" type="video/mp4">
+    </video>`;
+
+  const v=player.querySelector('video');
+  v.play().catch(()=>{});
  }
  function pilihPaket(nama, harga){
   document.getElementById("paymentName").innerText = nama;
