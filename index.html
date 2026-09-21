@@ -58,5 +58,15 @@ function showPage(id,btn){
 function showDrama(){showPage('drama');}
 function playVideo(){document.getElementById('player').style.display='block';const v=document.querySelector('video');v.play().catch(()=>{});}
 </script>
+ function playPart2(){
+    const player = document.getElementById("player");
+    player.style.display = "block";
+    player.innerHTML = `
+      <video controls playsinline poster="poster.jpg">
+        <source src="Part 2.mp4" type="video/mp4">
+      </video>
+   
+  }
+ </script>
 </body>
 </html>
