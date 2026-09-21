@@ -298,6 +298,15 @@ function playPart3(){
       hasil.innerText = "❌ Gagal mengecek kode.";
     });
  }
+ function updateProfilVIP(){
+  const status = document.getElementById("statusVIP");
+
+  if(localStorage.getItem("vipAktif") === "true"){
+    status.innerText = "👑 Status: VIP Aktif";
+  }else{
+    status.innerText = "Status: Belum VIP";
+  }
+ }
 </script>
 </body>
 </html>
