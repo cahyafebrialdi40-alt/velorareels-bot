@@ -216,6 +216,12 @@ function showPage(id,btn){
  if(btn){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
  window.scrollTo(0,0);
 }
+function showPage(id,btn){
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ if(btn){document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+ window.scrollTo(0,0);
+ }
 function showDrama(){showPage('drama');}
 function playVideo(){document.getElementById('player').style.display='block';const v=document.querySelector('video');v.play().catch(()=>{});}
 function playPart2(){
