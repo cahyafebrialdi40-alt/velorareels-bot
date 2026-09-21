@@ -261,6 +261,16 @@ function playPart3(){
  function showVIP(){
   showPage("vip");
  }
+ function bukaPart4(){
+  const btn = document.getElementById("part4Btn");
+
+  if(localStorage.getItem("vipAktif") === "true"){
+    btn.innerText = "▶ Putar";
+    btn.onclick = playPart4;
+  }else{
+    showVIP();
+  }
+ }
  function cekKodeVIP() {
   const kode = document.getElementById("kodeVIP").value.trim();
   const hasil = document.getElementById("hasilVIP");
