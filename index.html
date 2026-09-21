@@ -127,7 +127,57 @@ nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,
   <b>👑 1 Tahun<br><small>Rp135.000</small></b>
   <button onclick="pilihPaket('1 Tahun','Rp135.000')">Pilih 💗</button>
 </div></section>
+<section id="payment" class="page">
 
+<div style="
+  background:linear-gradient(135deg,#fff0f7,#fce4ec);
+  border-radius:25px;
+  padding:25px 15px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(255,105,180,.15);
+">
+
+  <div style="font-size:45px">💳💕</div>
+
+  <h2 style="color:#e75480;">Pembayaran VIP</h2>
+
+  <p style="color:#9b6075;">
+    Paket: <b id="paymentName">VIP</b>
+  </p>
+
+  <h2 id="paymentPrice" style="color:#e75480;">
+    Rp0
+  </h2>
+
+  <p>Scan QRIS di bawah untuk membayar ✨</p>
+
+  <img src="qris.png"
+       style="
+       width:80%;
+       max-width:300px;
+       border-radius:20px;
+       box-shadow:0 5px 20px rgba(0,0,0,.15);
+       ">
+
+  <p style="margin-top:15px;">
+    📱 Scan menggunakan aplikasi pembayaran kamu.
+  </p>
+
+  <button onclick="showPage('vip')"
+    style="
+    background:#ff7eb3;
+    color:white;
+    border:none;
+    border-radius:15px;
+    padding:12px 20px;
+    font-weight:bold;
+    ">
+    ← Kembali ke VIP
+  </button>
+
+</div>
+
+</section>
 <section id="profile" class="page"><div class="title">Profil 👤</div><div class="vip"><div style="font-size:55px">👤</div><h2>Pengguna</h2><p>Status: Belum VIP</p></div></section>
 </main>
 <nav>
