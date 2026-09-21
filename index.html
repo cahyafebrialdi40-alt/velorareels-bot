@@ -66,6 +66,16 @@ function playPart2(){
       </video>
     `;
 }
+ function playPart3(){
+ const player=document.getElementById('player');
+ player.style.display='block';
+ player.innerHTML=`
+  <video controls playsinline poster="poster.jpg">
+   <source src="Part 3.mp4" type="video/mp4">
+  </video>`;
+ const v=player.querySelector('video');
+ v.play().catch(()=>{});
+ }
 </script>
 </body>
 </html>
