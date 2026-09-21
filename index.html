@@ -226,16 +226,10 @@ function playPart3(){
  v.play().catch(()=>{});
  }
  function pilihPaket(nama, harga){
-  const links = {
-    "1 Hari": "https://dev.xen.to/sKMWSNQw",
-    "1 Minggu": "https://dev.xen.to/6s2IN_ZN",
-    "1 Bulan": "https://dev.xen.to/0XYVhONr",
-    "5 Bulan": "https://dev.xen.to/pZywzdm_",
-    "1 Tahun": "https://dev.xen.to/aXwgrvTC"
-  };
-
-  window.location.href = links[nama];
-}
+  document.getElementById("paymentName").innerText = nama;
+  document.getElementById("paymentPrice").innerText = harga;
+  showPage("payment");
+ }
 </script>
  }
 </script>
