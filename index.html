@@ -258,6 +258,33 @@ function playPart3(){
   document.getElementById("paymentPrice").innerText = harga;
   showPage("payment");
  }
+ function cekKodeVIP() {
+  const kode = document.getElementById("kodeVIP").value.trim();
+  const hasil = document.getElementById("hasilVIP");
+
+  if (!kode) {
+    hasil.innerText = "Masukkan kode VIP dulu ya 💗";
+    return;
+  }
+
+  hasil.innerText = "⏳ Mengecek kode...";
+
+  const url = "https://script.google.com/macros/s/AKfycbz7Z7yu7nfowDEqQuS6gbwiyIoXZXb2ayaFypwn1Qbo0z-SzP-hXCeJNT6XcUP2Y81A/exec";
+
+  fetch(url + "?kode=" + encodeURIComponent(kode))
+    .then(res => res.text())
+    .then(data => {
+      hasil.innerText = data;
+
+      if (data.includes("VIP AKTIF")) {
+        localStorage.setItem("vipAktif", "true");
+        alert("VIP berhasil diaktifkan! 👑");
+      }
+    })
+    .catch(() => {
+      hasil.innerText = "❌ Gagal mengecek kode.";
+    });
+ }
 </script>
  }
 </script>
