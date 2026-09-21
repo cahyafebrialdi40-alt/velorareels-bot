@@ -110,7 +110,15 @@ nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(480px,
 </style><div class="vip-cute">
   <div class="crown">👑✨</div>
   <h1>VIP Premium 💕</h1>
-  <p>Pilih paket VIP favoritmu 🌸</p>
+  <p>Pilih paket VIP favoritmu 🌸</p><div style="margin-top:20px;">
+  <input id="kodeVIP" type="text" placeholder="Masukkan kode VIP"
+    style="width:100%;padding:14px;border:2px solid #ffd1e1;border-radius:15px;font-size:16px;">
+  <button onclick="cekKodeVIP()"
+    style="margin-top:10px;width:100%;padding:14px;border:0;border-radius:15px;background:#ff4f8b;color:white;font-weight:bold;">
+    🔓 Aktifkan VIP
+  </button>
+  <p id="hasilVIP"></p>
+  </div>
 </div><div class="plan-cute">
   <b>🌷 1 Hari<br><small>Rp3.000</small></b>
   <button onclick="pilihPaket('1 Hari','Rp3.000')">Pilih 💗</button>
