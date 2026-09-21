@@ -176,12 +176,9 @@ function playPart3(){
  v.play().catch(()=>{});
  }
  function pilihPaket(nama, harga){
-  alert(
-    "💕 Paket VIP Dipilih 💕\n\n" +
-    nama + "\n" +
-    harga + "\n\n" +
-    "Lanjut ke pembayaran QR 💳"
-  );
+  document.getElementById('paymentName').innerText = nama;
+  document.getElementById('paymentPrice').innerText = harga;
+  showPage('payment');
  }
 </script>
 </body>
