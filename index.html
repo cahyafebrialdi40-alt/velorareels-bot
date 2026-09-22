@@ -170,18 +170,6 @@ main{
   text-align:center
 }
 
-.plan{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:16px;
-  padding:15px;
-  margin:12px 0;
-  text-align:left;
-  display:flex;
-  justify-content:space-between;
-  align-items:center
-}
-
 video{
   width:100%;
   border-radius:16px;
@@ -289,7 +277,8 @@ nav span{
   border-radius:18px;
   padding:25px;
   text-align:center;
-  color:#888
+  color:#888;
+  grid-column:1/-1
 }
 
 .status{
@@ -315,9 +304,7 @@ nav span{
 
 <main>
 
-<!-- =========================
-     BERANDA
-========================= -->
+<!-- BERANDA -->
 
 <section id="home" class="page active">
 
@@ -341,9 +328,7 @@ nav span{
 </section>
 
 
-<!-- =========================
-     DETAIL DRAMA
-========================= -->
+<!-- DETAIL DRAMA -->
 
 <section id="drama" class="page">
 
@@ -360,9 +345,7 @@ nav span{
 </section>
 
 
-<!-- =========================
-     EXPLORE
-========================= -->
+<!-- EXPLORE -->
 
 <section id="explore" class="page">
 
@@ -379,9 +362,7 @@ nav span{
 </section>
 
 
-<!-- =========================
-     VIP
-========================= -->
+<!-- VIP -->
 
 <section id="vip" class="page">
 
@@ -436,82 +417,45 @@ nav span{
 
 </div>
 
-
 <div class="plan-cute">
-
-  <b>
-    🌷 1 Hari<br>
-    <small>Rp3.000</small>
-  </b>
-
+  <b>🌷 1 Hari<br><small>Rp3.000</small></b>
   <button onclick="pilihPaket('1 Hari','Rp3.000')">
     Pilih 💗
   </button>
-
 </div>
 
-
 <div class="plan-cute">
-
-  <b>
-    🎀 1 Minggu<br>
-    <small>Rp10.000</small>
-  </b>
-
+  <b>🎀 1 Minggu<br><small>Rp10.000</small></b>
   <button onclick="pilihPaket('1 Minggu','Rp10.000')">
     Pilih 💗
   </button>
-
 </div>
 
-
 <div class="plan-cute">
-
-  <b>
-    🌸 1 Bulan<br>
-    <small>Rp25.000</small>
-  </b>
-
+  <b>🌸 1 Bulan<br><small>Rp25.000</small></b>
   <button onclick="pilihPaket('1 Bulan','Rp25.000')">
     Pilih 💗
   </button>
-
 </div>
 
-
 <div class="plan-cute">
-
-  <b>
-    🩷 5 Bulan<br>
-    <small>Rp75.000</small>
-  </b>
-
+  <b>🩷 5 Bulan<br><small>Rp75.000</small></b>
   <button onclick="pilihPaket('5 Bulan','Rp75.000')">
     Pilih 💗
   </button>
-
 </div>
 
-
 <div class="plan-cute">
-
-  <b>
-    👑 1 Tahun<br>
-    <small>Rp135.000</small>
-  </b>
-
+  <b>👑 1 Tahun<br><small>Rp135.000</small></b>
   <button onclick="pilihPaket('1 Tahun','Rp135.000')">
     Pilih 💗
   </button>
-
 </div>
 
 </section>
 
 
-<!-- =========================
-     PEMBAYARAN
-========================= -->
+<!-- PEMBAYARAN -->
 
 <section id="payment" class="page">
 
@@ -533,14 +477,10 @@ box-shadow:0 8px 20px rgba(255,105,180,.15);
 
 <p style="color:#9b6075;">
   Paket:
-  <b id="paymentName">
-    VIP
-  </b>
+  <b id="paymentName">VIP</b>
 </p>
 
-<h2
-id="paymentPrice"
-style="color:#e75480;">
+<h2 id="paymentPrice" style="color:#e75480;">
   Rp0
 </h2>
 
@@ -597,9 +537,7 @@ font-weight:bold;
 </section>
 
 
-<!-- =========================
-     PROFIL
-========================= -->
+<!-- PROFIL -->
 
 <section id="profile" class="page">
 
@@ -628,9 +566,7 @@ font-weight:bold;
 </main>
 
 
-<!-- =========================
-     NAVIGASI
-========================= -->
+<!-- NAVIGASI -->
 
 <nav>
 
@@ -667,15 +603,16 @@ Profil
 <script>
 
 /* =========================================
-   URL API OWNER PANEL
+   API OWNER
+   JSONP
 ========================================= */
 
 const OWNER_API =
-"https://script.google.com/macros/s/AKfycbynp_N_l_hI3LzJMQlBgjiwWsTz4pFX-Gj_o6XZZWi5NC2SMciT7XgoR3v4AGy9-Eg43WA/exec?api=1";
+"https://script.google.com/macros/s/AKfycbynp_N_l_hI3LzJMQlBgjiwWsTz4pFX-Gj_o6XZZWi5NC2SMciT7XgoR3v4AGy9-Eg43WA/exec";
 
 
 /* =========================================
-   DATA KATALOG
+   DATA
 ========================================= */
 
 let catalog = {
@@ -722,69 +659,96 @@ function showPage(id,btn){
 
 
 /* =========================================
-   LOAD DATA OWNER PANEL
+   LOAD DATA DENGAN JSONP
 ========================================= */
 
 function loadCatalog(){
 
-  fetch(OWNER_API)
+  const oldScript =
+    document.getElementById("veloraCatalogScript");
 
-    .then(res => {
+  if(oldScript){
+    oldScript.remove();
+  }
 
-      if(!res.ok){
-        throw new Error("API error");
+  window.veloraCatalogCallback =
+    function(data){
+
+      try{
+
+        catalog = {
+
+          drama:
+            Array.isArray(data.drama)
+              ? data.drama
+              : [],
+
+          episode:
+            Array.isArray(data.episode)
+              ? data.episode
+              : []
+
+        };
+
+        renderHome();
+        renderExplore();
+
+      }catch(error){
+
+        console.error(error);
+
+        tampilkanGagal();
+
       }
 
-      return res.json();
+    };
 
-    })
 
-    .then(data => {
+  const script =
+    document.createElement("script");
 
-      catalog = {
+  script.id =
+    "veloraCatalogScript";
 
-        drama:
-          Array.isArray(data.drama)
-            ? data.drama
-            : [],
+  script.src =
+    OWNER_API +
+    "?api=1&callback=veloraCatalogCallback&_=" +
+    Date.now();
 
-        episode:
-          Array.isArray(data.episode)
-            ? data.episode
-            : []
+  script.onerror =
+    function(){
 
-      };
+      tampilkanGagal();
 
-      renderHome();
-      renderExplore();
+    };
 
-    })
+  document.body.appendChild(script);
 
-    .catch(error => {
+}
 
-      console.error(error);
 
-      document.getElementById("homeDrama").innerHTML = `
-        <div class="empty">
-          ❌ Gagal memuat drama.
-          <br><br>
-          Coba refresh halaman.
-        </div>
-      `;
+function tampilkanGagal(){
 
-      document.getElementById("exploreDrama").innerHTML = `
-        <div class="empty">
-          ❌ Katalog belum bisa dimuat.
-        </div>
-      `;
+  document.getElementById("homeDrama").innerHTML = `
+    <div class="empty">
+      ❌ Gagal memuat drama.
+      <br><br>
+      Pastikan Web App Owner sudah di-deploy
+      dan akses Web App bisa dibuka.
+    </div>
+  `;
 
-    });
+  document.getElementById("exploreDrama").innerHTML = `
+    <div class="empty">
+      ❌ Katalog belum bisa dimuat.
+    </div>
+  `;
 
 }
 
 
 /* =========================================
-   RENDER BERANDA
+   BERANDA
 ========================================= */
 
 function renderHome(){
@@ -815,10 +779,28 @@ function renderHome(){
 
           <div class="cover">
 
-            <img
-              src="${mediaUrl(drama.poster,'image')}"
-              onerror="this.style.display='none'"
-            >
+            ${
+              drama.poster
+              ?
+              `
+              <img
+                src="${mediaUrl(drama.poster,'image')}"
+                onerror="this.style.display='none'"
+              >
+              `
+              :
+              `
+              <div style="
+                height:100%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:45px;
+              ">
+                🎬
+              </div>
+              `
+            }
 
           </div>
 
@@ -843,7 +825,7 @@ function renderHome(){
 
 
 /* =========================================
-   RENDER EXPLORE
+   EXPLORE
 ========================================= */
 
 function renderExplore(){
@@ -875,10 +857,28 @@ function renderExplore(){
 
           <div class="cover">
 
-            <img
-              src="${mediaUrl(drama.poster,'image')}"
-              onerror="this.style.display='none'"
-            >
+            ${
+              drama.poster
+              ?
+              `
+              <img
+                src="${mediaUrl(drama.poster,'image')}"
+                onerror="this.style.display='none'"
+              >
+              `
+              :
+              `
+              <div style="
+                height:100%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:45px;
+              ">
+                🎬
+              </div>
+              `
+            }
 
           </div>
 
@@ -920,11 +920,12 @@ function showDrama(id){
   renderDramaDetail();
 
   showPage("drama");
+
 }
 
 
 /* =========================================
-   RENDER EPISODE
+   DETAIL + EPISODE
 ========================================= */
 
 function renderDramaDetail(){
@@ -1033,10 +1034,18 @@ function renderDramaDetail(){
 
     <div class="detail">
 
-      <img
-        src="${mediaUrl(dramaAktif.poster,'image')}"
-        onerror="this.style.display='none'"
-      >
+      ${
+        dramaAktif.poster
+        ?
+        `
+        <img
+          src="${mediaUrl(dramaAktif.poster,'image')}"
+          onerror="this.style.display='none'"
+        >
+        `
+        :
+        ""
+      }
 
       <div class="detail-body">
 
@@ -1115,17 +1124,21 @@ function playEpisode(video,vip){
     <video
       controls
       playsinline
-      poster="${mediaUrl(
-        dramaAktif.poster,
-        "image"
-      )}"
+      poster="${
+        mediaUrl(
+          dramaAktif.poster,
+          "image"
+        )
+      }"
     >
 
       <source
-        src="${mediaUrl(
-          video,
-          "video"
-        )}"
+        src="${
+          mediaUrl(
+            video,
+            "video"
+          )
+        }"
         type="video/mp4"
       >
 
@@ -1273,7 +1286,7 @@ function cekKodeVIP(){
 
 
 /* =========================================
-   PROFIL VIP
+   PROFIL
 ========================================= */
 
 function updateProfilVIP(){
@@ -1282,6 +1295,11 @@ function updateProfilVIP(){
     document.getElementById(
       "statusVIP"
     );
+
+
+  if(!status){
+    return;
+  }
 
 
   if(
@@ -1304,7 +1322,7 @@ function updateProfilVIP(){
 
 
 /* =========================================
-   MEDIA URL
+   MEDIA URL GOOGLE DRIVE
 ========================================= */
 
 function mediaUrl(url,type){
@@ -1314,13 +1332,9 @@ function mediaUrl(url,type){
   }
 
 
-  url = String(url).trim();
+  url =
+    String(url).trim();
 
-
-  /*
-   Jika URL bukan Google Drive,
-   gunakan langsung.
-  */
 
   if(
     !url.includes(
@@ -1332,10 +1346,6 @@ function mediaUrl(url,type){
 
   }
 
-
-  /*
-   Ambil ID file Google Drive.
-  */
 
   let id = null;
 
@@ -1366,11 +1376,6 @@ function mediaUrl(url,type){
   }
 
 
-  /*
-   Poster menggunakan view.
-   Video menggunakan download.
-  */
-
   if(type === "image"){
 
     return (
@@ -1390,13 +1395,15 @@ function mediaUrl(url,type){
 
 
 /* =========================================
-   KEAMANAN TEKS
+   KEAMANAN
 ========================================= */
 
 function escapeHtml(value){
 
-  if(value === null ||
-     value === undefined){
+  if(
+    value === null ||
+    value === undefined
+  ){
 
     return "";
 
@@ -1406,13 +1413,9 @@ function escapeHtml(value){
   return String(value)
 
     .replaceAll("&","&amp;")
-
     .replaceAll("<","&lt;")
-
     .replaceAll(">","&gt;")
-
     .replaceAll('"',"&quot;")
-
     .replaceAll("'","&#039;");
 
 }
@@ -1420,8 +1423,10 @@ function escapeHtml(value){
 
 function escapeAttr(value){
 
-  if(value === null ||
-     value === undefined){
+  if(
+    value === null ||
+    value === undefined
+  ){
 
     return "";
 
@@ -1437,7 +1442,7 @@ function escapeAttr(value){
 
 
 /* =========================================
-   MULAI WEBSITE
+   MULAI
 ========================================= */
 
 document.addEventListener(
@@ -1455,4 +1460,3 @@ document.addEventListener(
 
 </body>
 </html>
-  
