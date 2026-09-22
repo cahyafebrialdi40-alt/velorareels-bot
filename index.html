@@ -46,13 +46,8 @@ main{
   padding:16px
 }
 
-.page{
-  display:none
-}
-
-.page.active{
-  display:block
-}
+.page{display:none}
+.page.active{display:block}
 
 .hero{
   padding:22px;
@@ -153,8 +148,7 @@ main{
   margin-top:10px
 }
 
-.episode button,
-.vip button{
+.episode button{
   border:0;
   background:#6d5be7;
   color:#fff;
@@ -187,8 +181,7 @@ video{
 }
 
 .vip-cute .crown{
-  font-size:55px;
-  margin-bottom:5px
+  font-size:55px
 }
 
 .vip-cute h1{
@@ -198,8 +191,7 @@ video{
 }
 
 .vip-cute p{
-  color:#9b6075;
-  margin:5px 0
+  color:#9b6075
 }
 
 .plan-cute{
@@ -214,11 +206,6 @@ video{
   box-shadow:0 5px 15px rgba(255,105,180,.10)
 }
 
-.plan-cute b{
-  color:#444;
-  font-size:16px
-}
-
 .plan-cute small{
   color:#e75480;
   font-size:15px
@@ -230,8 +217,7 @@ video{
   border:none;
   border-radius:15px;
   padding:10px 17px;
-  font-weight:bold;
-  cursor:pointer
+  font-weight:bold
 }
 
 nav{
@@ -266,12 +252,6 @@ nav span{
   margin-bottom:3px
 }
 
-.loading{
-  text-align:center;
-  padding:30px;
-  color:#888
-}
-
 .empty{
   background:#fff;
   border-radius:18px;
@@ -279,14 +259,6 @@ nav span{
   text-align:center;
   color:#888;
   grid-column:1/-1
-}
-
-.status{
-  padding:10px;
-  border-radius:12px;
-  margin:10px 0;
-  background:#f5f5f5;
-  font-size:13px
 }
 </style>
 </head>
@@ -304,8 +276,7 @@ nav span{
 
 <main>
 
-<!-- BERANDA -->
-
+<!-- HOME -->
 <section id="home" class="page active">
 
 <div class="hero">
@@ -319,173 +290,145 @@ nav span{
   Drama pilihan
 </div>
 
-<div id="homeDrama" class="grid">
-  <div class="loading">
-    ⏳ Memuat drama...
-  </div>
-</div>
+<div id="homeDrama" class="grid"></div>
 
 </section>
 
 
-<!-- DETAIL DRAMA -->
-
+<!-- DETAIL -->
 <section id="drama" class="page">
 
 <button class="back" onclick="showPage('home')">
   ← Kembali
 </button>
 
-<div id="dramaDetail">
-  <div class="loading">
-    ⏳ Memuat drama...
-  </div>
-</div>
+<div id="dramaDetail"></div>
 
 </section>
 
 
 <!-- EXPLORE -->
-
 <section id="explore" class="page">
 
 <div class="title">
   Jelajahi 🔎
 </div>
 
-<div id="exploreDrama" class="grid">
-  <div class="loading">
-    ⏳ Memuat drama...
-  </div>
-</div>
+<div id="exploreDrama" class="grid"></div>
 
 </section>
 
 
 <!-- VIP -->
-
 <section id="vip" class="page">
 
 <div class="vip-cute">
 
-  <div class="crown">
-    👑✨
-  </div>
+<div class="crown">👑✨</div>
 
-  <h1>
-    VIP Premium 💕
-  </h1>
+<h1>VIP Premium 💕</h1>
 
-  <p>
-    Pilih paket VIP favoritmu 🌸
-  </p>
+<p>Pilih paket VIP favoritmu 🌸</p>
 
-  <div style="margin-top:20px;">
+<input
+id="kodeVIP"
+type="text"
+placeholder="Masukkan kode VIP"
+style="
+width:100%;
+padding:14px;
+border:2px solid #ffd1e1;
+border-radius:15px;
+font-size:16px;
+">
 
-    <input
-      id="kodeVIP"
-      type="text"
-      placeholder="Masukkan kode VIP"
-      style="
-      width:100%;
-      padding:14px;
-      border:2px solid #ffd1e1;
-      border-radius:15px;
-      font-size:16px;
-      "
-    >
+<button
+onclick="cekKodeVIP()"
+style="
+margin-top:10px;
+width:100%;
+padding:14px;
+border:0;
+border-radius:15px;
+background:#ff4f8b;
+color:white;
+font-weight:bold;">
+🔓 Aktifkan VIP
+</button>
 
-    <button
-      onclick="cekKodeVIP()"
-      style="
-      margin-top:10px;
-      width:100%;
-      padding:14px;
-      border:0;
-      border-radius:15px;
-      background:#ff4f8b;
-      color:white;
-      font-weight:bold;
-      "
-    >
-      🔓 Aktifkan VIP
-    </button>
-
-    <p id="hasilVIP"></p>
-
-  </div>
+<p id="hasilVIP"></p>
 
 </div>
 
-<div class="plan-cute">
-  <b>🌷 1 Hari<br><small>Rp3.000</small></b>
-  <button onclick="pilihPaket('1 Hari','Rp3.000')">
-    Pilih 💗
-  </button>
-</div>
 
 <div class="plan-cute">
-  <b>🎀 1 Minggu<br><small>Rp10.000</small></b>
-  <button onclick="pilihPaket('1 Minggu','Rp10.000')">
-    Pilih 💗
-  </button>
+<b>🌷 1 Hari<br><small>Rp3.000</small></b>
+<button onclick="pilihPaket('1 Hari','Rp3.000')">
+Pilih 💗
+</button>
 </div>
 
-<div class="plan-cute">
-  <b>🌸 1 Bulan<br><small>Rp25.000</small></b>
-  <button onclick="pilihPaket('1 Bulan','Rp25.000')">
-    Pilih 💗
-  </button>
-</div>
 
 <div class="plan-cute">
-  <b>🩷 5 Bulan<br><small>Rp75.000</small></b>
-  <button onclick="pilihPaket('5 Bulan','Rp75.000')">
-    Pilih 💗
-  </button>
+<b>🎀 1 Minggu<br><small>Rp10.000</small></b>
+<button onclick="pilihPaket('1 Minggu','Rp10.000')">
+Pilih 💗
+</button>
 </div>
 
+
 <div class="plan-cute">
-  <b>👑 1 Tahun<br><small>Rp135.000</small></b>
-  <button onclick="pilihPaket('1 Tahun','Rp135.000')">
-    Pilih 💗
-  </button>
+<b>🌸 1 Bulan<br><small>Rp25.000</small></b>
+<button onclick="pilihPaket('1 Bulan','Rp25.000')">
+Pilih 💗
+</button>
+</div>
+
+
+<div class="plan-cute">
+<b>🩷 5 Bulan<br><small>Rp75.000</small></b>
+<button onclick="pilihPaket('5 Bulan','Rp75.000')">
+Pilih 💗
+</button>
+</div>
+
+
+<div class="plan-cute">
+<b>👑 1 Tahun<br><small>Rp135.000</small></b>
+<button onclick="pilihPaket('1 Tahun','Rp135.000')">
+Pilih 💗
+</button>
 </div>
 
 </section>
 
 
-<!-- PEMBAYARAN -->
-
+<!-- PAYMENT -->
 <section id="payment" class="page">
 
 <div style="
 background:linear-gradient(135deg,#fff0f7,#fce4ec);
 border-radius:25px;
 padding:25px 15px;
-text-align:center;
-box-shadow:0 8px 20px rgba(255,105,180,.15);
-">
+text-align:center;">
 
-<div style="font-size:45px">
-  💳💕
-</div>
+<div style="font-size:45px">💳💕</div>
 
 <h2 style="color:#e75480;">
-  Pembayaran VIP
-</h2>
-
-<p style="color:#9b6075;">
-  Paket:
-  <b id="paymentName">VIP</b>
-</p>
-
-<h2 id="paymentPrice" style="color:#e75480;">
-  Rp0
+Pembayaran VIP
 </h2>
 
 <p>
-  Scan QRIS di bawah untuk membayar ✨
+Paket:
+<b id="paymentName">VIP</b>
+</p>
+
+<h2 id="paymentPrice" style="color:#e75480;">
+Rp0
+</h2>
+
+<p>
+Scan QRIS di bawah untuk membayar ✨
 </p>
 
 <img
@@ -493,12 +436,10 @@ src="qris.png"
 style="
 width:80%;
 max-width:300px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,.15);
-">
+border-radius:20px;">
 
-<p style="margin-top:15px;">
-  📱 Scan menggunakan aplikasi pembayaran kamu.
+<p>
+📱 Scan menggunakan aplikasi pembayaran kamu.
 </p>
 
 <a
@@ -506,14 +447,12 @@ href="https://t.me/Veloragroup21"
 target="_blank"
 style="
 display:inline-block;
-margin-top:10px;
 background:#229ED9;
 color:white;
 text-decoration:none;
 border-radius:15px;
 padding:12px 20px;
-font-weight:bold;
-">
+font-weight:bold;">
 📩 Kirim Bukti Pembayaran via Telegram
 </a>
 
@@ -527,8 +466,7 @@ color:white;
 border:none;
 border-radius:15px;
 padding:12px 20px;
-font-weight:bold;
-">
+font-weight:bold;">
 ← Kembali ke VIP
 </button>
 
@@ -537,26 +475,23 @@ font-weight:bold;
 </section>
 
 
-<!-- PROFIL -->
-
+<!-- PROFILE -->
 <section id="profile" class="page">
 
 <div class="title">
-  Profil 👤
+Profil 👤
 </div>
 
 <div class="vip">
 
 <div style="font-size:55px">
-  👤
+👤
 </div>
 
-<h2>
-  Pengguna
-</h2>
+<h2>Pengguna</h2>
 
 <p id="statusVIP">
-  Status: Belum VIP
+Status: Belum VIP
 </p>
 
 </div>
@@ -566,8 +501,7 @@ font-weight:bold;
 </main>
 
 
-<!-- NAVIGASI -->
-
+<!-- NAV -->
 <nav>
 
 <button
@@ -603,22 +537,65 @@ Profil
 <script>
 
 /* =========================================
-   API OWNER
-   JSONP
+   DATA DRAMA LANGSUNG
 ========================================= */
 
-const OWNER_API =
-"https://script.google.com/macros/s/AKfycbynp_N_l_hI3LzJMQlBgjiwWsTz4pFX-Gj_o6XZZWi5NC2SMciT7XgoR3v4AGy9-Eg43WA/exec";
+const catalog = {
+
+  drama: [
+
+    {
+      id:"DRAMA-1",
+      judul:"Pengawak... Yang Tak Terkalahkan",
+      poster:"poster.jpg",
+      deskripsi:"Saksikan kisah Pengawak... Yang Tak Terkalahkan di VeloraReels.",
+      status:"Aktif"
+    }
+
+  ],
+
+  episode: [
+
+    {
+      dramaId:"DRAMA-1",
+      part:1,
+      judul:"Part 1",
+      video:"part1.mp4",
+      akses:"Gratis"
+    },
+
+    {
+      dramaId:"DRAMA-1",
+      part:2,
+      judul:"Part 2",
+      video:"Part 2.mp4",
+      akses:"Gratis"
+    },
+
+    {
+      dramaId:"DRAMA-1",
+      part:3,
+      judul:"Part 3",
+      video:"Part 3.mp4",
+      akses:"Gratis"
+    },
+
+    {
+      dramaId:"DRAMA-1",
+      part:4,
+      judul:"Part 4",
+      video:"Part 4.mp4",
+      akses:"VIP"
+    }
+
+  ]
+
+};
 
 
 /* =========================================
-   DATA
+   DRAMA AKTIF
 ========================================= */
-
-let catalog = {
-  drama: [],
-  episode: []
-};
 
 let dramaAktif = null;
 
@@ -629,197 +606,73 @@ let dramaAktif = null;
 
 function showPage(id,btn){
 
-  document
-    .querySelectorAll(".page")
-    .forEach(x =>
-      x.classList.remove("active")
-    );
+document
+.querySelectorAll(".page")
+.forEach(x=>{
+x.classList.remove("active");
+});
 
-  const page =
-    document.getElementById(id);
+const page=document.getElementById(id);
 
-  if(page){
-    page.classList.add("active");
-  }
-
-  if(btn){
-
-    document
-      .querySelectorAll("nav button")
-      .forEach(x =>
-        x.classList.remove("active")
-      );
-
-    btn.classList.add("active");
-
-  }
-
-  window.scrollTo(0,0);
+if(page){
+page.classList.add("active");
 }
 
+if(btn){
 
-/* =========================================
-   LOAD DATA DENGAN JSONP
-========================================= */
+document
+.querySelectorAll("nav button")
+.forEach(x=>{
+x.classList.remove("active");
+});
 
-function loadCatalog(){
-
-  const oldScript =
-    document.getElementById("veloraCatalogScript");
-
-  if(oldScript){
-    oldScript.remove();
-  }
-
-  window.veloraCatalogCallback =
-    function(data){
-
-      try{
-
-        catalog = {
-
-          drama:
-            Array.isArray(data.drama)
-              ? data.drama
-              : [],
-
-          episode:
-            Array.isArray(data.episode)
-              ? data.episode
-              : []
-
-        };
-
-        renderHome();
-        renderExplore();
-
-      }catch(error){
-
-        console.error(error);
-
-        tampilkanGagal();
-
-      }
-
-    };
-
-
-  const script =
-    document.createElement("script");
-
-  script.id =
-    "veloraCatalogScript";
-
-  script.src =
-    OWNER_API +
-    "?api=1&callback=veloraCatalogCallback&_=" +
-    Date.now();
-
-  script.onerror =
-    function(){
-
-      tampilkanGagal();
-
-    };
-
-  document.body.appendChild(script);
+btn.classList.add("active");
 
 }
 
-
-function tampilkanGagal(){
-
-  document.getElementById("homeDrama").innerHTML = `
-    <div class="empty">
-      ❌ Gagal memuat drama.
-      <br><br>
-      Pastikan Web App Owner sudah di-deploy
-      dan akses Web App bisa dibuka.
-    </div>
-  `;
-
-  document.getElementById("exploreDrama").innerHTML = `
-    <div class="empty">
-      ❌ Katalog belum bisa dimuat.
-    </div>
-  `;
+window.scrollTo(0,0);
 
 }
 
 
 /* =========================================
-   BERANDA
+   HOME
 ========================================= */
 
 function renderHome(){
 
-  const box =
-    document.getElementById("homeDrama");
+const box=document.getElementById("homeDrama");
 
-  if(!catalog.drama.length){
+box.innerHTML=
+catalog.drama.map(drama=>`
 
-    box.innerHTML = `
-      <div class="empty">
-        🎬 Belum ada drama.
-      </div>
-    `;
+<div
+class="card"
+onclick="showDrama('${drama.id}')">
 
-    return;
-  }
+<div class="cover">
 
+<img
+src="${drama.poster}"
+onerror="this.style.display='none'">
 
-  box.innerHTML =
-    catalog.drama.map(drama => {
+</div>
 
-      return `
-        <div
-          class="card"
-          onclick="showDrama('${escapeAttr(drama.id)}')"
-        >
+<div class="info">
 
-          <div class="cover">
+<h3>
+${escapeHtml(drama.judul)}
+</h3>
 
-            ${
-              drama.poster
-              ?
-              `
-              <img
-                src="${mediaUrl(drama.poster,'image')}"
-                onerror="this.style.display='none'"
-              >
-              `
-              :
-              `
-              <div style="
-                height:100%;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-size:45px;
-              ">
-                🎬
-              </div>
-              `
-            }
+<p>
+${escapeHtml(drama.status)}
+</p>
 
-          </div>
+</div>
 
-          <div class="info">
+</div>
 
-            <h3>
-              ${escapeHtml(drama.judul)}
-            </h3>
-
-            <p>
-              ${escapeHtml(drama.status || "Aktif")}
-            </p>
-
-          </div>
-
-        </div>
-      `;
-
-    }).join("");
+`).join("");
 
 }
 
@@ -830,74 +683,60 @@ function renderHome(){
 
 function renderExplore(){
 
-  const box =
-    document.getElementById("exploreDrama");
+const box=document.getElementById("exploreDrama");
+
+box.innerHTML=
+catalog.drama.map(drama=>`
+
+<div
+class="card"
+onclick="showDrama('${drama.id}')">
+
+<div class="cover">
+
+<img
+src="${drama.poster}"
+onerror="this.style.display='none'">
+
+</div>
+
+<div class="info">
+
+<h3>
+${escapeHtml(drama.judul)}
+</h3>
+
+<p>
+${escapeHtml(drama.status)}
+</p>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
 
 
-  if(!catalog.drama.length){
+/* =========================================
+   BUKA DRAMA
+========================================= */
 
-    box.innerHTML = `
-      <div class="empty">
-        🎬 Belum ada drama.
-      </div>
-    `;
+function showDrama(id){
 
-    return;
-  }
+dramaAktif=
+catalog.drama.find(
+d=>d.id===id
+);
 
+if(!dramaAktif){
+return;
+}
 
-  box.innerHTML =
-    catalog.drama.map(drama => {
+renderDramaDetail();
 
-      return `
-        <div
-          class="card"
-          onclick="showDrama('${escapeAttr(drama.id)}')"
-        >
-
-          <div class="cover">
-
-            ${
-              drama.poster
-              ?
-              `
-              <img
-                src="${mediaUrl(drama.poster,'image')}"
-                onerror="this.style.display='none'"
-              >
-              `
-              :
-              `
-              <div style="
-                height:100%;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-size:45px;
-              ">
-                🎬
-              </div>
-              `
-            }
-
-          </div>
-
-          <div class="info">
-
-            <h3>
-              ${escapeHtml(drama.judul)}
-            </h3>
-
-            <p>
-              ${escapeHtml(drama.status || "Aktif")}
-            </p>
-
-          </div>
-
-        </div>
-      `;
-
-    }).join("");
+showPage("drama");
 
 }
 
@@ -906,266 +745,175 @@ function renderExplore(){
    DETAIL DRAMA
 ========================================= */
 
-function showDrama(id){
-
-  dramaAktif =
-    catalog.drama.find(
-      d => String(d.id) === String(id)
-    );
-
-  if(!dramaAktif){
-    return;
-  }
-
-  renderDramaDetail();
-
-  showPage("drama");
-
-}
-
-
-/* =========================================
-   DETAIL + EPISODE
-========================================= */
-
 function renderDramaDetail(){
 
-  if(!dramaAktif){
-    return;
-  }
+if(!dramaAktif){
+return;
+}
+
+const box=
+document.getElementById("dramaDetail");
+
+const episodes=
+catalog.episode
+.filter(ep=>
+ep.dramaId===dramaAktif.id
+)
+.sort((a,b)=>
+a.part-b.part
+);
 
 
-  const box =
-    document.getElementById("dramaDetail");
+let html="";
+
+episodes.forEach(ep=>{
+
+const vip=
+ep.akses.toLowerCase()==="vip";
 
 
-  const episodes =
-    catalog.episode
+html+=`
 
-      .filter(ep =>
-        String(ep.dramaId) ===
-        String(dramaAktif.id)
-      )
+<div class="episode">
 
-      .sort((a,b) =>
-        Number(a.part || 0) -
-        Number(b.part || 0)
-      );
+<div>
 
+<b>
+Part ${ep.part}
+${vip?" 🔒":""}
+</b>
 
-  let episodeHTML = "";
+<br>
 
+<small>
+${escapeHtml(ep.judul)}
+</small>
 
-  if(!episodes.length){
+</div>
 
-    episodeHTML = `
-      <div class="empty">
-        🎬 Episode belum tersedia.
-      </div>
-    `;
+<button
+onclick="playEpisode('${ep.video}',${vip})">
 
-  }else{
+${vip?"🔒 VIP":"▶ Putar"}
 
-    episodeHTML =
-      episodes.map(ep => {
+</button>
 
-        const akses =
-          String(ep.akses || "")
-            .toLowerCase()
-            .trim();
+</div>
 
-        const vip =
-          akses === "vip" ||
-          akses === "premium";
+`;
+
+});
 
 
-        const button =
-          vip
+box.innerHTML=`
 
-          ? `
-            <button
-              onclick="playEpisode('${escapeAttr(ep.video)}',true)"
-            >
-              🔒 VIP
-            </button>
-          `
+<div class="detail">
 
-          : `
-            <button
-              onclick="playEpisode('${escapeAttr(ep.video)}',false)"
-            >
-              ▶ Putar
-            </button>
-          `;
+<img
+src="${dramaAktif.poster}">
 
+<div class="detail-body">
 
-        return `
-          <div class="episode">
+<h2>
+${escapeHtml(dramaAktif.judul)}
+</h2>
 
-            <div>
+<p>
+${escapeHtml(dramaAktif.deskripsi)}
+</p>
 
-              <b>
-                Part ${escapeHtml(ep.part)}
-                ${vip ? " 🔒" : ""}
-              </b>
+<h3>
+🎬 Episode
+</h3>
 
-              <br>
+${html}
 
-              <small>
-                ${escapeHtml(
-                  ep.judul ||
-                  "Episode " + ep.part
-                )}
-              </small>
+<div
+id="player"
+style="display:none">
+</div>
 
-            </div>
+</div>
 
-            ${button}
+</div>
 
-          </div>
-        `;
-
-      }).join("");
-
-  }
-
-
-  box.innerHTML = `
-
-    <div class="detail">
-
-      ${
-        dramaAktif.poster
-        ?
-        `
-        <img
-          src="${mediaUrl(dramaAktif.poster,'image')}"
-          onerror="this.style.display='none'"
-        >
-        `
-        :
-        ""
-      }
-
-      <div class="detail-body">
-
-        <h2>
-          ${escapeHtml(dramaAktif.judul)}
-        </h2>
-
-        <p>
-          ${escapeHtml(
-            dramaAktif.deskripsi || "Drama"
-          )}
-        </p>
-
-        ${episodeHTML}
-
-        <div
-          id="player"
-          style="display:none">
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
+`;
 
 }
 
 
 /* =========================================
-   PUTAR EPISODE
+   PUTAR VIDEO
 ========================================= */
 
 function playEpisode(video,vip){
 
-  if(vip){
+if(vip){
 
-    if(
-      localStorage.getItem("vipAktif")
-      !== "true"
-    ){
+if(
+localStorage.getItem("vipAktif")
+!=="true"
+){
 
-      showVIP();
+alert(
+"🔒 Part ini khusus VIP. Silakan aktifkan VIP terlebih dahulu."
+);
 
-      return;
-    }
+showPage("vip");
 
-  }
+return;
 
+}
 
-  if(!video){
-
-    alert(
-      "Video belum tersedia."
-    );
-
-    return;
-  }
+}
 
 
-  const player =
-    document.getElementById("player");
+const player=
+document.getElementById("player");
+
+if(!player){
+return;
+}
 
 
-  if(!player){
-    return;
-  }
+player.style.display="block";
 
 
-  player.style.display =
-    "block";
+player.innerHTML=`
+
+<video
+controls
+playsinline
+poster="${dramaAktif.poster}">
+
+<source
+src="${video}"
+type="video/mp4">
+
+Browser kamu tidak mendukung video.
+
+</video>
+
+`;
 
 
-  player.innerHTML = `
-
-    <video
-      controls
-      playsinline
-      poster="${
-        mediaUrl(
-          dramaAktif.poster,
-          "image"
-        )
-      }"
-    >
-
-      <source
-        src="${
-          mediaUrl(
-            video,
-            "video"
-          )
-        }"
-        type="video/mp4"
-      >
-
-      Browser kamu tidak mendukung video.
-
-    </video>
-
-  `;
+const videoElement=
+player.querySelector("video");
 
 
-  const videoElement =
-    player.querySelector("video");
+videoElement
+.play()
+.catch(()=>{});
 
 
-  videoElement
-    .play()
-    .catch(() => {});
+setTimeout(()=>{
 
+player.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
 
-  setTimeout(() => {
-
-    player.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-  },100);
+},100);
 
 }
 
@@ -1176,22 +924,15 @@ function playEpisode(video,vip){
 
 function pilihPaket(nama,harga){
 
-  document.getElementById(
-    "paymentName"
-  ).innerText = nama;
+document.getElementById(
+"paymentName"
+).innerText=nama;
 
-  document.getElementById(
-    "paymentPrice"
-  ).innerText = harga;
+document.getElementById(
+"paymentPrice"
+).innerText=harga;
 
-  showPage("payment");
-
-}
-
-
-function showVIP(){
-
-  showPage("vip");
+showPage("payment");
 
 }
 
@@ -1202,85 +943,75 @@ function showVIP(){
 
 function cekKodeVIP(){
 
-  const kode =
-    document
-      .getElementById("kodeVIP")
-      .value
-      .trim();
+const kode=
+document
+.getElementById("kodeVIP")
+.value
+.trim();
+
+const hasil=
+document.getElementById("hasilVIP");
 
 
-  const hasil =
-    document.getElementById(
-      "hasilVIP"
-    );
+if(!kode){
+
+hasil.innerText=
+"Masukkan kode VIP dulu ya 💗";
+
+return;
+
+}
 
 
-  if(!kode){
-
-    hasil.innerText =
-      "Masukkan kode VIP dulu ya 💗";
-
-    return;
-  }
+hasil.innerText=
+"⏳ Mengecek kode...";
 
 
-  hasil.innerText =
-    "⏳ Mengecek kode...";
+const url=
+"https://script.google.com/macros/s/AKfycbz7Z7yu7nfowDEqQuS6gbwiyIoXZXb2ayaFypwn1Qbo0z-SzP-hXCeJNT6XcUP2Y81A/exec";
 
 
-  const url =
-  "https://script.google.com/macros/s/AKfycbz7Z7yu7nfowDEqQuS6gbwiyIoXZXb2ayaFypwn1Qbo0z-SzP-hXCeJNT6XcUP2Y81A/exec";
+fetch(
+url+"?kode="+
+encodeURIComponent(kode)
+)
+
+.then(res=>res.text())
+
+.then(data=>{
+
+hasil.innerText=data;
 
 
-  fetch(
-    url +
-    "?kode=" +
-    encodeURIComponent(kode)
-  )
+if(
+data.includes("VIP AKTIF")
+){
 
-  .then(res =>
-    res.text()
-  )
+localStorage.setItem(
+"vipAktif",
+"true"
+);
 
-  .then(data => {
+alert(
+"VIP berhasil diaktifkan! 👑"
+);
 
-    hasil.innerText =
-      data;
+updateProfilVIP();
 
+if(dramaAktif){
+renderDramaDetail();
+}
 
-    if(
-      data.includes(
-        "VIP AKTIF"
-      )
-    ){
+}
 
-      localStorage.setItem(
-        "vipAktif",
-        "true"
-      );
+})
 
+.catch(()=>{
 
-      alert(
-        "VIP berhasil diaktifkan! 👑"
-      );
+hasil.innerText=
+"❌ Gagal mengecek kode.";
 
-
-      updateProfilVIP();
-
-      if(dramaAktif){
-        renderDramaDetail();
-      }
-
-    }
-
-  })
-
-  .catch(() => {
-
-    hasil.innerText =
-      "❌ Gagal mengecek kode.";
-
-  });
+});
 
 }
 
@@ -1291,152 +1022,47 @@ function cekKodeVIP(){
 
 function updateProfilVIP(){
 
-  const status =
-    document.getElementById(
-      "statusVIP"
-    );
+const status=
+document.getElementById("statusVIP");
 
 
-  if(!status){
-    return;
-  }
+if(
+localStorage.getItem("vipAktif")
+==="true"
+){
 
+status.innerText=
+"👑 Status: VIP Aktif";
 
-  if(
-    localStorage.getItem(
-      "vipAktif"
-    ) === "true"
-  ){
+}else{
 
-    status.innerText =
-      "👑 Status: VIP Aktif";
+status.innerText=
+"Status: Belum VIP";
 
-  }else{
-
-    status.innerText =
-      "Status: Belum VIP";
-
-  }
+}
 
 }
 
 
 /* =========================================
-   MEDIA URL GOOGLE DRIVE
-========================================= */
-
-function mediaUrl(url,type){
-
-  if(!url){
-    return "";
-  }
-
-
-  url =
-    String(url).trim();
-
-
-  if(
-    !url.includes(
-      "drive.google.com"
-    )
-  ){
-
-    return url;
-
-  }
-
-
-  let id = null;
-
-
-  const match1 =
-    url.match(
-      /\/d\/([a-zA-Z0-9_-]+)/
-    );
-
-
-  const match2 =
-    url.match(
-      /[?&]id=([a-zA-Z0-9_-]+)/
-    );
-
-
-  if(match1){
-    id = match1[1];
-  }
-
-  else if(match2){
-    id = match2[1];
-  }
-
-
-  if(!id){
-    return url;
-  }
-
-
-  if(type === "image"){
-
-    return (
-      "https://drive.google.com/uc?export=view&id="
-      + id
-    );
-
-  }
-
-
-  return (
-    "https://drive.google.com/uc?export=download&id="
-    + id
-  );
-
-}
-
-
-/* =========================================
-   KEAMANAN
+   ESCAPE HTML
 ========================================= */
 
 function escapeHtml(value){
 
-  if(
-    value === null ||
-    value === undefined
-  ){
-
-    return "";
-
-  }
-
-
-  return String(value)
-
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
+if(
+value===null||
+value===undefined
+){
+return "";
 }
 
-
-function escapeAttr(value){
-
-  if(
-    value === null ||
-    value === undefined
-  ){
-
-    return "";
-
-  }
-
-
-  return String(value)
-
-    .replaceAll("\\","\\\\")
-    .replaceAll("'","\\'");
+return String(value)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
@@ -1446,15 +1072,14 @@ function escapeAttr(value){
 ========================================= */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+"DOMContentLoaded",
+function(){
 
-    loadCatalog();
+renderHome();
+renderExplore();
+updateProfilVIP();
 
-    updateProfilVIP();
-
-  }
-);
+});
 
 </script>
 
