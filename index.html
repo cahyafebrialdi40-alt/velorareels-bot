@@ -2,1086 +2,772 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VeloraReels ✨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELORA — Streaming</title>
 
 <style>
-*{box-sizing:border-box}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  margin:0;
-  background:#f7f7fb;
-  color:#171821;
-  font-family:Arial,sans-serif
+  font-family:Arial,sans-serif;
+  background:#08080b;
+  color:#fff;
 }
-
-.app{
-  max-width:480px;
-  margin:auto;
-  min-height:100vh;
-  padding-bottom:90px
-}
+button,input{font:inherit}
+button{cursor:pointer}
 
 header{
-  background:#fff;
-  padding:18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   position:sticky;
   top:0;
-  z-index:5
+  z-index:100;
+  background:rgba(8,8,11,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #222;
+  padding:15px 5%;
+  display:flex;
+  align-items:center;
+  gap:25px;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:800
-}
-
-.logo span{
-  color:#765ee8
-}
-
-main{
-  padding:16px
-}
-
-.page{display:none}
-.page.active{display:block}
-
-.hero{
-  padding:22px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#efe8ff,#fff0d8);
-  margin-bottom:20px
-}
-
-.hero h1{
-  font-size:25px;
-  margin:0 0 8px
-}
-
-.hero p{
-  color:#777;
-  line-height:1.5
-}
-
-.title{
-  font-size:20px;
-  font-weight:800;
-  margin:18px 0 12px
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px
-}
-
-.card{
-  background:#fff;
-  border-radius:17px;
-  overflow:hidden;
-  box-shadow:0 3px 15px #0000000d;
-  cursor:pointer
-}
-
-.cover{
-  height:190px;
-  background:#ddd;
-  overflow:hidden
-}
-
-.cover img{
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-
-.info{
-  padding:12px
-}
-
-.info h3{
-  margin:0 0 6px;
-  font-size:15px
-}
-
-.info p{
-  margin:0;
-  color:#999;
-  font-size:12px
-}
-
-.detail{
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden
-}
-
-.detail img{
-  width:100%;
-  display:block;
-  max-height:470px;
-  object-fit:cover
-}
-
-.detail-body{
-  padding:16px
-}
-
-.back{
-  border:0;
-  background:#eee;
-  border-radius:12px;
-  padding:10px 14px;
-  margin-bottom:12px
-}
-
-.episode{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#f5f3ff;
-  padding:14px;
-  border-radius:14px;
-  margin-top:10px
-}
-
-.episode button{
-  border:0;
-  background:#6d5be7;
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:3px;
   color:#fff;
-  border-radius:12px;
-  padding:10px 14px;
-  font-weight:700
-}
-
-.vip{
-  background:linear-gradient(135deg,#eee8ff,#fff);
-  padding:22px;
-  border-radius:22px;
-  text-align:center
-}
-
-video{
-  width:100%;
-  border-radius:16px;
-  background:#000;
-  margin-top:12px
-}
-
-.vip-cute{
-  background:linear-gradient(135deg,#fff0f7,#fce4ec);
-  border-radius:25px;
-  padding:25px 15px;
-  text-align:center;
-  margin-bottom:18px;
-  box-shadow:0 8px 20px rgba(255,105,180,.15)
-}
-
-.vip-cute .crown{
-  font-size:55px
-}
-
-.vip-cute h1{
-  color:#e75480;
-  margin:5px 0;
-  font-size:27px
-}
-
-.vip-cute p{
-  color:#9b6075
-}
-
-.plan-cute{
-  background:#fff;
-  border:2px solid #ffd1e1;
-  border-radius:20px;
-  padding:16px;
-  margin:12px 0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  box-shadow:0 5px 15px rgba(255,105,180,.10)
-}
-
-.plan-cute small{
-  color:#e75480;
-  font-size:15px
-}
-
-.plan-cute button{
-  background:linear-gradient(135deg,#ff7eb3,#ff4f8b);
-  color:white;
-  border:none;
-  border-radius:15px;
-  padding:10px 17px;
-  font-weight:bold
 }
 
 nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(480px,100%);
-  background:#202024;
-  border-radius:24px 24px 0 0;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  padding:10px 6px;
-  z-index:10
+  display:flex;
+  gap:18px;
+  margin-left:auto;
 }
 
 nav button{
+  background:none;
   border:0;
-  background:transparent;
   color:#aaa;
+}
+
+nav button:hover{color:#fff}
+
+.vip-btn{
+  background:linear-gradient(135deg,#ffd76a,#c78b18);
+  color:#111;
+  border:0;
+  border-radius:20px;
+  padding:9px 17px;
+  font-weight:bold;
+}
+
+.hero{
+  min-height:430px;
+  padding:80px 7%;
+  display:flex;
+  align-items:end;
+  background:
+    linear-gradient(90deg,#08080b 10%,transparent 80%),
+    linear-gradient(0deg,#08080b,transparent);
+}
+
+.hero h1{
+  font-size:48px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  max-width:550px;
+  color:#bbb;
+  line-height:1.6;
+}
+
+.container{
+  padding:35px 5%;
+}
+
+.section-title{
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:#111116;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #202027;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#555;
+}
+
+.poster{
+  width:100%;
+  aspect-ratio:2/3;
+  object-fit:cover;
+  background:#1d1d24;
+}
+
+.card-info{
+  padding:12px;
+}
+
+.card-title{
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.meta{
   font-size:12px;
-  padding:5px
-}
-
-nav button.active{
-  color:#7dbbff
-}
-
-nav span{
-  display:block;
-  font-size:22px;
-  margin-bottom:3px
-}
-
-.empty{
-  background:#fff;
-  border-radius:18px;
-  padding:25px;
-  text-align:center;
   color:#888;
-  grid-column:1/-1
+}
+
+.lock{
+  color:#ffd76a;
+  font-size:12px;
+  margin-top:7px;
+}
+
+.search{
+  width:100%;
+  max-width:500px;
+  padding:13px 17px;
+  border-radius:25px;
+  border:1px solid #333;
+  background:#121217;
+  color:white;
+  outline:none;
+  margin-bottom:30px;
+}
+
+/* DRAMA SCROLL */
+.drama-feed{
+  height:75vh;
+  overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  border-radius:15px;
+}
+
+.drama-item{
+  min-height:75vh;
+  scroll-snap-align:start;
+  position:relative;
+  background:#111;
+  margin-bottom:5px;
+  display:flex;
+  align-items:end;
+  overflow:hidden;
+}
+
+.drama-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  background:#16161d;
+}
+
+.drama-overlay{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:35px;
+  background:linear-gradient(transparent,rgba(0,0,0,.9));
+}
+
+.drama-overlay h2{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.drama-overlay p{
+  color:#ddd;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(0,0,0,.85);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  width:100%;
+  max-width:430px;
+  background:#15151b;
+  border:1px solid #333;
+  border-radius:18px;
+  padding:28px;
+}
+
+.modal-box h2{
+  margin-bottom:20px;
+}
+
+.close{
+  float:right;
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:25px;
+}
+
+.plan{
+  background:#202028;
+  border:1px solid #333;
+  border-radius:13px;
+  padding:18px;
+  margin:12px 0;
+}
+
+.plan strong{
+  display:block;
+  font-size:21px;
+  margin-bottom:7px;
+}
+
+.plan button{
+  width:100%;
+  margin-top:12px;
+  padding:11px;
+  border:0;
+  border-radius:8px;
+  background:#ffd76a;
+}
+
+.login-input{
+  width:100%;
+  padding:12px;
+  background:#0d0d12;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:8px;
+  margin-bottom:12px;
+}
+
+.primary{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+}
+
+.status{
+  margin-top:15px;
+  color:#aaa;
+  font-size:14px;
+}
+
+footer{
+  padding:40px 5%;
+  text-align:center;
+  color:#666;
+  border-top:1px solid #222;
+}
+
+.hidden{display:none!important}
+
+@media(max-width:700px){
+  header{padding:13px 4%}
+  nav{display:none}
+  .hero{min-height:350px;padding:50px 6%}
+  .hero h1{font-size:36px}
+  .cards{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
-
 <header>
-  <div class="logo">
-    Velora<span>Reels</span> ✨
-  </div>
-  <div>🔔</div>
+  <div class="logo">VELORA</div>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('film')">Film</button>
+    <button onclick="showPage('drama')">Drama China</button>
+    <button onclick="showPage('search')">Search</button>
+  </nav>
+
+  <button class="vip-btn" onclick="openVIP()">👑 VIP</button>
 </header>
 
-<main>
-
 <!-- HOME -->
-<section id="home" class="page active">
+<section id="home" class="page">
 
-<div class="hero">
-  <h1>Selamat datang di VeloraReels 🎬</h1>
-  <p>
-    Nonton drama favoritmu, kapan saja dan di mana saja.
-  </p>
-</div>
+  <div class="hero">
+    <div>
+      <h1>VELORA</h1>
+      <p>
+        Nikmati film dan Drama China dalam pengalaman streaming
+        modern. Drama China menggunakan mode scroll, sedangkan film
+        menggunakan katalog biasa.
+      </p>
+      <br>
+      <button class="vip-btn" onclick="openVIP()">👑 Gabung VIP</button>
+    </div>
+  </div>
 
-<div class="title">
-  Drama pilihan
-</div>
+  <div class="container">
+    <h2 class="section-title">🔥 Film Pilihan</h2>
+    <div id="homeMovies" class="cards"></div>
+  </div>
 
-<div id="homeDrama" class="grid"></div>
-
-</section>
-
-
-<!-- DETAIL -->
-<section id="drama" class="page">
-
-<button class="back" onclick="showPage('home')">
-  ← Kembali
-</button>
-
-<div id="dramaDetail"></div>
+  <div class="container">
+    <h2 class="section-title">🇨🇳 Drama China</h2>
+    <div id="homeDrama" class="cards"></div>
+  </div>
 
 </section>
 
-
-<!-- EXPLORE -->
-<section id="explore" class="page">
-
-<div class="title">
-  Jelajahi 🔎
-</div>
-
-<div id="exploreDrama" class="grid"></div>
-
+<!-- FILM -->
+<section id="film" class="page hidden">
+  <div class="container">
+    <h1 class="section-title">🎬 Film</h1>
+    <div id="movieList" class="cards"></div>
+  </div>
 </section>
 
+<!-- DRAMA -->
+<section id="drama" class="page hidden">
+  <div class="container">
+    <h1 class="section-title">🇨🇳 Drama China</h1>
+    <p style="color:#888;margin-bottom:20px">
+      Geser ke atas/bawah untuk berpindah episode.
+    </p>
 
-<!-- VIP -->
-<section id="vip" class="page">
-
-<div class="vip-cute">
-
-<div class="crown">👑✨</div>
-
-<h1>VIP Premium 💕</h1>
-
-<p>Pilih paket VIP favoritmu 🌸</p>
-
-<input
-id="kodeVIP"
-type="text"
-placeholder="Masukkan kode VIP"
-style="
-width:100%;
-padding:14px;
-border:2px solid #ffd1e1;
-border-radius:15px;
-font-size:16px;
-">
-
-<button
-onclick="cekKodeVIP()"
-style="
-margin-top:10px;
-width:100%;
-padding:14px;
-border:0;
-border-radius:15px;
-background:#ff4f8b;
-color:white;
-font-weight:bold;">
-🔓 Aktifkan VIP
-</button>
-
-<p id="hasilVIP"></p>
-
-</div>
-
-
-<div class="plan-cute">
-<b>🌷 1 Hari<br><small>Rp3.000</small></b>
-<button onclick="pilihPaket('1 Hari','Rp3.000')">
-Pilih 💗
-</button>
-</div>
-
-
-<div class="plan-cute">
-<b>🎀 1 Minggu<br><small>Rp10.000</small></b>
-<button onclick="pilihPaket('1 Minggu','Rp10.000')">
-Pilih 💗
-</button>
-</div>
-
-
-<div class="plan-cute">
-<b>🌸 1 Bulan<br><small>Rp25.000</small></b>
-<button onclick="pilihPaket('1 Bulan','Rp25.000')">
-Pilih 💗
-</button>
-</div>
-
-
-<div class="plan-cute">
-<b>🩷 5 Bulan<br><small>Rp75.000</small></b>
-<button onclick="pilihPaket('5 Bulan','Rp75.000')">
-Pilih 💗
-</button>
-</div>
-
-
-<div class="plan-cute">
-<b>👑 1 Tahun<br><small>Rp135.000</small></b>
-<button onclick="pilihPaket('1 Tahun','Rp135.000')">
-Pilih 💗
-</button>
-</div>
-
+    <div class="drama-feed" id="dramaFeed"></div>
+  </div>
 </section>
 
+<!-- SEARCH -->
+<section id="search" class="page hidden">
+  <div class="container">
+    <h1 class="section-title">🔎 Cari</h1>
 
-<!-- PAYMENT -->
-<section id="payment" class="page">
+    <input
+      class="search"
+      id="searchInput"
+      placeholder="Cari film atau drama..."
+      oninput="searchContent()"
+    >
 
-<div style="
-background:linear-gradient(135deg,#fff0f7,#fce4ec);
-border-radius:25px;
-padding:25px 15px;
-text-align:center;">
-
-<div style="font-size:45px">💳💕</div>
-
-<h2 style="color:#e75480;">
-Pembayaran VIP
-</h2>
-
-<p>
-Paket:
-<b id="paymentName">VIP</b>
-</p>
-
-<h2 id="paymentPrice" style="color:#e75480;">
-Rp0
-</h2>
-
-<p>
-Scan QRIS di bawah untuk membayar ✨
-</p>
-
-<img
-src="qris.png"
-style="
-width:80%;
-max-width:300px;
-border-radius:20px;">
-
-<p>
-📱 Scan menggunakan aplikasi pembayaran kamu.
-</p>
-
-<a
-href="https://t.me/Veloragroup21"
-target="_blank"
-style="
-display:inline-block;
-background:#229ED9;
-color:white;
-text-decoration:none;
-border-radius:15px;
-padding:12px 20px;
-font-weight:bold;">
-📩 Kirim Bukti Pembayaran via Telegram
-</a>
-
-<br><br>
-
-<button
-onclick="showPage('vip')"
-style="
-background:#ff7eb3;
-color:white;
-border:none;
-border-radius:15px;
-padding:12px 20px;
-font-weight:bold;">
-← Kembali ke VIP
-</button>
-
-</div>
-
+    <div id="searchResults" class="cards"></div>
+  </div>
 </section>
 
+<footer>
+  © 2026 VELORA
+</footer>
 
-<!-- PROFILE -->
-<section id="profile" class="page">
+<!-- VIP MODAL -->
+<div id="vipModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeVIP()">×</button>
 
-<div class="title">
-Profil 👤
+    <h2>👑 VELORA VIP</h2>
+
+    <div class="plan">
+      <strong>VIP 7 Hari</strong>
+      Rp10.000
+      <button onclick="buyVIP('7 Hari')">Pilih Paket</button>
+    </div>
+
+    <div class="plan">
+      <strong>VIP 30 Hari</strong>
+      Rp25.000
+      <button onclick="buyVIP('30 Hari')">Pilih Paket</button>
+    </div>
+
+    <div class="plan">
+      <strong>VIP 90 Hari</strong>
+      Rp60.000
+      <button onclick="buyVIP('90 Hari')">Pilih Paket</button>
+    </div>
+
+    <p class="status" id="vipStatus"></p>
+  </div>
 </div>
 
-<div class="vip">
+<!-- LOGIN -->
+<div id="loginModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeLogin()">×</button>
 
-<div style="font-size:55px">
-👤
+    <h2>👤 Login VELORA</h2>
+
+    <input id="username"
+      class="login-input"
+      placeholder="Username">
+
+    <input id="password"
+      class="login-input"
+      type="password"
+      placeholder="Password">
+
+    <button class="primary" onclick="login()">
+      Login
+    </button>
+
+    <p class="status" id="loginStatus"></p>
+  </div>
 </div>
-
-<h2>Pengguna</h2>
-
-<p id="statusVIP">
-Status: Belum VIP
-</p>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- NAV -->
-<nav>
-
-<button
-class="active"
-onclick="showPage('home',this)">
-<span>🏠</span>
-Beranda
-</button>
-
-<button
-onclick="showPage('explore',this)">
-<span>🔎</span>
-Jelajahi
-</button>
-
-<button
-onclick="showPage('vip',this)">
-<span>👑</span>
-VIP
-</button>
-
-<button
-onclick="showPage('profile',this);updateProfilVIP()">
-<span>👤</span>
-Profil
-</button>
-
-</nav>
-
-</div>
-
 
 <script>
 
-/* =========================================
-   DATA DRAMA LANGSUNG
-========================================= */
+/* =========================
+   DATA DEMO
+========================= */
 
-const catalog = {
+const movies = [
+  {
+    title:"Film Pilihan 1",
+    year:"2026",
+    genre:"Action",
+    vip:false,
+    poster:"https://picsum.photos/400/600?random=11"
+  },
+  {
+    title:"Film Premium",
+    year:"2026",
+    genre:"Drama",
+    vip:true,
+    poster:"https://picsum.photos/400/600?random=12"
+  },
+  {
+    title:"Film Terbaru",
+    year:"2026",
+    genre:"Romance",
+    vip:false,
+    poster:"https://picsum.photos/400/600?random=13"
+  }
+];
 
-  drama: [
-
-    {
-      id:"DRAMA-1",
-      judul:"Pengawak... Yang Tak Terkalahkan",
-      poster:"poster.jpg",
-      deskripsi:"Saksikan kisah Pengawak... Yang Tak Terkalahkan di VeloraReels.",
-      status:"Aktif"
-    }
-
-  ],
-
-  episode: [
-
-    {
-      dramaId:"DRAMA-1",
-      part:1,
-      judul:"Part 1",
-      video:"part1.mp4",
-      akses:"Gratis"
-    },
-
-    {
-      dramaId:"DRAMA-1",
-      part:2,
-      judul:"Part 2",
-      video:"Part 2.mp4",
-      akses:"Gratis"
-    },
-
-    {
-      dramaId:"DRAMA-1",
-      part:3,
-      judul:"Part 3",
-      video:"Part 3.mp4",
-      akses:"Gratis"
-    },
-
-    {
-      dramaId:"DRAMA-1",
-      part:4,
-      judul:"Part 4",
-      video:"Part 4.mp4",
-      akses:"VIP"
-    }
-
-  ]
-
-};
+const dramas = [
+  {
+    title:"Drama China VELORA",
+    episode:1,
+    vip:false,
+    video:""
+  },
+  {
+    title:"Drama China VELORA",
+    episode:2,
+    vip:true,
+    video:""
+  },
+  {
+    title:"Drama China VELORA",
+    episode:3,
+    vip:true,
+    video:""
+  }
+];
 
 
-/* =========================================
-   DRAMA AKTIF
-========================================= */
+/* =========================
+   PAGE
+========================= */
 
-let dramaAktif = null;
+function showPage(page){
 
+  document.querySelectorAll(".page")
+    .forEach(x=>x.classList.add("hidden"));
 
-/* =========================================
-   NAVIGASI
-========================================= */
+  document.getElementById(page)
+    .classList.remove("hidden");
 
-function showPage(id,btn){
-
-document
-.querySelectorAll(".page")
-.forEach(x=>{
-x.classList.remove("active");
-});
-
-const page=document.getElementById(id);
-
-if(page){
-page.classList.add("active");
-}
-
-if(btn){
-
-document
-.querySelectorAll("nav button")
-.forEach(x=>{
-x.classList.remove("active");
-});
-
-btn.classList.add("active");
-
-}
-
-window.scrollTo(0,0);
-
+  window.scrollTo(0,0);
 }
 
 
-/* =========================================
-   HOME
-========================================= */
+/* =========================
+   MOVIES
+========================= */
 
-function renderHome(){
+function movieCard(movie){
 
-const box=document.getElementById("homeDrama");
+  return `
+    <div class="card"
+         onclick="watchMovie(${movies.indexOf(movie)})">
 
-box.innerHTML=
-catalog.drama.map(drama=>`
+      <img class="poster" src="${movie.poster}">
 
-<div
-class="card"
-onclick="showDrama('${drama.id}')">
+      <div class="card-info">
+        <div class="card-title">
+          ${movie.title}
+        </div>
 
-<div class="cover">
+        <div class="meta">
+          ${movie.year} • ${movie.genre}
+        </div>
 
-<img
-src="${drama.poster}"
-onerror="this.style.display='none'">
+        ${
+          movie.vip
+          ? '<div class="lock">👑 VIP</div>'
+          : ''
+        }
+      </div>
 
-</div>
+    </div>
+  `;
+}
 
-<div class="info">
+function renderMovies(){
 
-<h3>
-${escapeHtml(drama.judul)}
-</h3>
+  document.getElementById("movieList").innerHTML =
+    movies.map(movieCard).join("");
 
-<p>
-${escapeHtml(drama.status)}
-</p>
-
-</div>
-
-</div>
-
-`).join("");
-
+  document.getElementById("homeMovies").innerHTML =
+    movies.slice(0,3).map(movieCard).join("");
 }
 
 
-/* =========================================
-   EXPLORE
-========================================= */
+/* =========================
+   DRAMA
+========================= */
 
-function renderExplore(){
+function renderDrama(){
 
-const box=document.getElementById("exploreDrama");
+  const feed =
+    document.getElementById("dramaFeed");
 
-box.innerHTML=
-catalog.drama.map(drama=>`
+  feed.innerHTML =
+    dramas.map((d,i)=>`
 
-<div
-class="card"
-onclick="showDrama('${drama.id}')">
+      <div class="drama-item">
 
-<div class="cover">
+        ${
+          d.video
+          ?
+          `<video
+             class="drama-video"
+             src="${d.video}"
+             controls
+             playsinline>
+           </video>`
+          :
+          `<div class="drama-video"></div>`
+        }
 
-<img
-src="${drama.poster}"
-onerror="this.style.display='none'">
+        <div class="drama-overlay">
 
-</div>
+          <h2>${d.title}</h2>
 
-<div class="info">
+          <p>
+            Episode ${d.episode}
+            ${d.vip ? " • 👑 VIP" : ""}
+          </p>
 
-<h3>
-${escapeHtml(drama.judul)}
-</h3>
+          ${
+            d.vip
+            ? `<button
+                class="vip-btn"
+                style="margin-top:12px"
+                onclick="openVIP()">
+                🔒 Buka VIP
+              </button>`
+            : ""
+          }
 
-<p>
-${escapeHtml(drama.status)}
-</p>
+        </div>
 
-</div>
+      </div>
 
-</div>
+    `).join("");
 
-`).join("");
+  document.getElementById("homeDrama").innerHTML =
+    dramas.map((d,i)=>`
 
+      <div class="card"
+           onclick="showPage('drama')">
+
+        <div class="poster"
+             style="
+             display:flex;
+             align-items:center;
+             justify-content:center;
+             font-size:40px;">
+          🇨🇳
+        </div>
+
+        <div class="card-info">
+          <div class="card-title">
+            ${d.title}
+          </div>
+          <div class="meta">
+            Episode ${d.episode}
+          </div>
+        </div>
+
+      </div>
+
+    `).join("");
 }
 
 
-/* =========================================
-   BUKA DRAMA
-========================================= */
+/* =========================
+   WATCH MOVIE
+========================= */
 
-function showDrama(id){
+function watchMovie(index){
 
-dramaAktif=
-catalog.drama.find(
-d=>d.id===id
-);
+  const movie = movies[index];
 
-if(!dramaAktif){
-return;
-}
+  if(movie.vip && localStorage.getItem("veloraVIP") !== "true"){
 
-renderDramaDetail();
+    alert("🔒 Film ini khusus VIP.");
+    openVIP();
+    return;
 
-showPage("drama");
+  }
 
-}
-
-
-/* =========================================
-   DETAIL DRAMA
-========================================= */
-
-function renderDramaDetail(){
-
-if(!dramaAktif){
-return;
-}
-
-const box=
-document.getElementById("dramaDetail");
-
-const episodes=
-catalog.episode
-.filter(ep=>
-ep.dramaId===dramaAktif.id
-)
-.sort((a,b)=>
-a.part-b.part
-);
-
-
-let html="";
-
-episodes.forEach(ep=>{
-
-const vip=
-ep.akses.toLowerCase()==="vip";
-
-
-html+=`
-
-<div class="episode">
-
-<div>
-
-<b>
-Part ${ep.part}
-${vip?" 🔒":""}
-</b>
-
-<br>
-
-<small>
-${escapeHtml(ep.judul)}
-</small>
-
-</div>
-
-<button
-onclick="playEpisode('${ep.video}',${vip})">
-
-${vip?"🔒 VIP":"▶ Putar"}
-
-</button>
-
-</div>
-
-`;
-
-});
-
-
-box.innerHTML=`
-
-<div class="detail">
-
-<img
-src="${dramaAktif.poster}">
-
-<div class="detail-body">
-
-<h2>
-${escapeHtml(dramaAktif.judul)}
-</h2>
-
-<p>
-${escapeHtml(dramaAktif.deskripsi)}
-</p>
-
-<h3>
-🎬 Episode
-</h3>
-
-${html}
-
-<div
-id="player"
-style="display:none">
-</div>
-
-</div>
-
-</div>
-
-`;
-
+  alert(
+    "▶ Membuka: " +
+    movie.title +
+    "\n\nDi versi produksi, bagian ini akan membuka video player."
+  );
 }
 
 
-/* =========================================
-   PUTAR VIDEO
-========================================= */
-
-function playEpisode(video,vip){
-
-if(vip){
-
-if(
-localStorage.getItem("vipAktif")
-!=="true"
-){
-
-alert(
-"🔒 Part ini khusus VIP. Silakan aktifkan VIP terlebih dahulu."
-);
-
-showPage("vip");
-
-return;
-
-}
-
-}
-
-
-const player=
-document.getElementById("player");
-
-if(!player){
-return;
-}
-
-
-player.style.display="block";
-
-
-player.innerHTML=`
-
-<video
-controls
-playsinline
-poster="${dramaAktif.poster}">
-
-<source
-src="${video}"
-type="video/mp4">
-
-Browser kamu tidak mendukung video.
-
-</video>
-
-`;
-
-
-const videoElement=
-player.querySelector("video");
-
-
-videoElement
-.play()
-.catch(()=>{});
-
-
-setTimeout(()=>{
-
-player.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-},100);
-
-}
-
-
-/* =========================================
+/* =========================
    VIP
-========================================= */
+========================= */
 
-function pilihPaket(nama,harga){
+function openVIP(){
+  document.getElementById("vipModal")
+    .style.display="flex";
 
-document.getElementById(
-"paymentName"
-).innerText=nama;
+  updateVIPStatus();
+}
 
-document.getElementById(
-"paymentPrice"
-).innerText=harga;
+function closeVIP(){
+  document.getElementById("vipModal")
+    .style.display="none";
+}
 
-showPage("payment");
+function buyVIP(plan){
 
+  /*
+    DEMO SAJA.
+
+    Untuk pembayaran asli:
+    hubungkan ke payment gateway/backend.
+  */
+
+  const confirmPay =
+    confirm(
+      "Pilih VIP " + plan +
+      "?\n\nDemo: klik OK untuk mengaktifkan VIP."
+    );
+
+  if(confirmPay){
+
+    localStorage.setItem("veloraVIP","true");
+
+    alert(
+      "👑 VIP berhasil diaktifkan (DEMO)."
+    );
+
+    updateVIPStatus();
+  }
+}
+
+function updateVIPStatus(){
+
+  const vip =
+    localStorage.getItem("veloraVIP") === "true";
+
+  document.getElementById("vipStatus").innerText =
+    vip
+    ? "👑 Status akun: VIP AKTIF"
+    : "Status akun: GRATIS";
 }
 
 
-/* =========================================
-   CEK KODE VIP
-========================================= */
+/* =========================
+   LOGIN DEMO
+========================= */
 
-function cekKodeVIP(){
+function openLogin(){
+  document.getElementById("loginModal")
+    .style.display="flex";
+}
 
-const kode=
-document
-.getElementById("kodeVIP")
-.value
-.trim();
+function closeLogin(){
+  document.getElementById("loginModal")
+    .style.display="none";
+}
 
-const hasil=
-document.getElementById("hasilVIP");
+function login(){
 
+  const user =
+    document.getElementById("username").value;
 
-if(!kode){
+  if(!user){
 
-hasil.innerText=
-"Masukkan kode VIP dulu ya 💗";
+    document.getElementById("loginStatus")
+      .innerText="Masukkan username.";
 
-return;
+    return;
+  }
 
+  localStorage.setItem(
+    "veloraUser",
+    user
+  );
+
+  document.getElementById("loginStatus")
+    .innerText =
+    "Login berhasil sebagai " + user;
 }
 
 
-hasil.innerText=
-"⏳ Mengecek kode...";
+/* =========================
+   SEARCH
+========================= */
 
+function searchContent(){
 
-const url=
-"https://script.google.com/macros/s/AKfycbz7Z7yu7nfowDEqQuS6gbwiyIoXZXb2ayaFypwn1Qbo0z-SzP-hXCeJNT6XcUP2Y81A/exec";
+  const q =
+    document.getElementById("searchInput")
+      .value.toLowerCase();
 
+  const movieResults =
+    movies.filter(m =>
+      m.title.toLowerCase().includes(q) ||
+      m.genre.toLowerCase().includes(q)
+    );
 
-fetch(
-url+"?kode="+
-encodeURIComponent(kode)
-)
-
-.then(res=>res.text())
-
-.then(data=>{
-
-hasil.innerText=data;
-
-
-if(
-data.includes("VIP AKTIF")
-){
-
-localStorage.setItem(
-"vipAktif",
-"true"
-);
-
-alert(
-"VIP berhasil diaktifkan! 👑"
-);
-
-updateProfilVIP();
-
-if(dramaAktif){
-renderDramaDetail();
-}
-
-}
-
-})
-
-.catch(()=>{
-
-hasil.innerText=
-"❌ Gagal mengecek kode.";
-
-});
-
+  document.getElementById("searchResults")
+    .innerHTML =
+    movieResults.map(movieCard).join("");
 }
 
 
-/* =========================================
-   PROFIL
-========================================= */
+/* =========================
+   START
+========================= */
 
-function updateProfilVIP(){
-
-const status=
-document.getElementById("statusVIP");
-
-
-if(
-localStorage.getItem("vipAktif")
-==="true"
-){
-
-status.innerText=
-"👑 Status: VIP Aktif";
-
-}else{
-
-status.innerText=
-"Status: Belum VIP";
-
-}
-
-}
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHtml(value){
-
-if(
-value===null||
-value===undefined
-){
-return "";
-}
-
-return String(value)
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================
-   MULAI
-========================================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-function(){
-
-renderHome();
-renderExplore();
-updateProfilVIP();
-
-});
+renderMovies();
+renderDrama();
 
 </script>
 
 </body>
-</html>
+      </html>
